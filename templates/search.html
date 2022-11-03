@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+    <br/>
+    <h2>Search results for "{{ form.keyword.data }}"</h2>
+    {% for result in results %}
+        <article class="media content-section">
+            <!--Put poster here, make square instead of circle-->
+            <img src="https://image.tmdb.org/t/p/w154{{ result.poster_path }}" alt="{{ result.title }}">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <!--Movie title, with link to movie page-->
+                    <a class="mr-2" href="{{ url_for('posts.new_post', movie_id=result.id) }}">{{ result.title }}</a>
+                    <small class="text-muted">{{ result.release_date }}</small>
+                </div>
+                <!--Post main cast here-->
+                <h2><a class="article-title" href="{{ url_for('main.home') }}">{{ result.budget }}</a></h2>
+                <!--Post movie summary-->
+                <p class="article-content">{{ result.overview }}</p>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
